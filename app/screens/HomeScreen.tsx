@@ -1,24 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { StyleSheet, View, FlatList, Pressable } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import Text from "../components/Text/Text";
 import RenderWorkouts from "../components/RenderWorkout";
 import { RootStackParamList, Workout } from "../types";
-import { getWorkouts } from "../store/workouts";
+import useWorkouts from "../hooks/useWorkouts";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
+
 function HomeScreen({ navigation }: Props) {
-	const [workouts, setWorkouts] = useState<Workout[]>([]);
-
-	useEffect(() => {
-		const fetchWorkouts = async () => {
-			const workouts = await getWorkouts();
-			setWorkouts(workouts);
-		};
-
-		fetchWorkouts();
-	}, []);
+	const workouts = useWorkouts();
 
 	return (
 		<View style={styles.container}>
