@@ -1,6 +1,11 @@
+import { Route } from "@react-navigation/native";
+
 export type RootStackParamList = {
 	Home: undefined;
 	Planner: undefined;
+	WorkoutDetail: {
+		slug: string;
+	};
 	Root: undefined;
 };
 
@@ -32,3 +37,11 @@ export interface TextProps {
 		[key: string]: any;
 	};
 }
+
+export type DetailParams = {
+	route: {
+		params: {
+			slug: string;
+		};
+	};
+};

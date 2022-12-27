@@ -2,17 +2,24 @@ import React from "react";
 import { StyleSheet, View, FlatList, Pressable } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import Text from "../components/Text/Text";
-import { RootStackParamList, Workout } from "../types";
 import data from "../data/data.json";
+import Text from "../components/Text/Text";
 import RenderWorkouts from "../components/RenderWorkout";
+import { RootStackParamList, Workout } from "../types";
 
 function HomeScreen({
 	navigation,
 }: NativeStackScreenProps<RootStackParamList, "Home">) {
 	return (
 		<View style={styles.container}>
-			<Text text={"New Workouts"} size={20} type="lato-bold" />
+			<Text
+				text={"New Workouts"}
+				size={20}
+				type="lato-bold"
+				style={{
+					textAlign: "center",
+				}}
+			/>
 			<FlatList
 				scrollEnabled
 				data={data as Workout[]}
@@ -21,7 +28,9 @@ function HomeScreen({
 					return (
 						<Pressable
 							onPress={() =>
-								alert(`I am pressed + ${item.name}`)
+								navigation.navigate("WorkoutDetail", {
+									slug: item.slug,
+								})
 							}>
 							<RenderWorkouts item={item} />
 						</Pressable>
@@ -35,15 +44,8 @@ function HomeScreen({
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		fontFamily: "lato",
 		backgroundColor: "#fff",
 		padding: 20,
-	},
-	header: {
-		fontSize: 20,
-		textAlign: "center",
-		fontWeight: "bold",
-		fontFamily: "lato-bold",
 	},
 });
 
