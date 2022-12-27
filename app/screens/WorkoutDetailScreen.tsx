@@ -1,17 +1,20 @@
 import React from "react";
-import { StyleSheet, View, FlatList, Pressable } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import Text from "../components/Text/Text";
-import { RootStackParamList, DetailParams } from "../types";
+import { RootStackParamList, DetailParams, Workout } from "../types";
+import useWorkout from "../hooks/useWorkoutBySlug";
 
 type Navigation = NativeStackScreenProps<RootStackParamList, "WorkoutDetail"> &
 	DetailParams;
 
 function WorkoutDetailScreen({ route }: Navigation) {
+	const workout = useWorkout(route.params.slug);
+
 	return (
 		<View style={styles.container}>
-			<Text text={route.params.slug} size={20} type="lato-bold" />
+			<Text text={workout?.slug} size={20} type="lato-bold" />
 		</View>
 	);
 }

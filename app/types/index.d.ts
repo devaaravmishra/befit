@@ -30,7 +30,7 @@ export interface Workout {
 
 type Type = "lato-regular" | "lato-bold";
 export interface TextProps {
-	text: string;
+	text: string | undefined;
 	type?: Type;
 	size?: number;
 	style?: {
