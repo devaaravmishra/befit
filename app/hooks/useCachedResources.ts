@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import * as Font from "expo-font";
 
-import { containsData, getData, storeData } from "../store";
-import data from "../data/data.json";
+import { getWorkouts, initWorkouts } from "../store/workouts";
 
 export default function useCachedResources() {
 	const [isLoadingComplete, setIsLoadingComplete] = useState(false);
@@ -10,8 +9,7 @@ export default function useCachedResources() {
 	useEffect(() => {
 		async function loadResourcesAndDataAsync() {
 			try {
-				const hasWorkouts = await containsData("workouts");
-				if (!hasWorkouts) await storeData("workouts", data);
+				await initWorkouts();
 
 				await Font.loadAsync({
 					lato: require("../assets/fonts/Lato-Regular.ttf"),
@@ -20,8 +18,6 @@ export default function useCachedResources() {
 			} catch (err) {
 				console.log(err);
 			} finally {
-				const workouts = await getData("workouts");
-				console.log(workouts);
 				setIsLoadingComplete(true);
 			}
 		}

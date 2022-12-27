@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, FlatList, Pressable } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import data from "../data/data.json";
 import Text from "../components/Text/Text";
 import RenderWorkouts from "../components/RenderWorkout";
 import { RootStackParamList, Workout } from "../types";
+import { getWorkouts } from "../store/workouts";
 
-function HomeScreen({
-	navigation,
-}: NativeStackScreenProps<RootStackParamList, "Home">) {
+type Props = NativeStackScreenProps<RootStackParamList, "Home">;
+function HomeScreen({ navigation }: Props) {
+	const [workouts, setWorkouts] = useState<Workout[]>([]);
+
+	useEffect(() => {
+		const fetchWorkouts = async () => {
+			const workouts = await getWorkouts();
+			setWorkouts(workouts);
+		};
+
+		fetchWorkouts();
+	}, []);
+
 	return (
 		<View style={styles.container}>
 			<Text
@@ -22,7 +32,7 @@ function HomeScreen({
 			/>
 			<FlatList
 				scrollEnabled
-				data={data as Workout[]}
+				data={workouts}
 				keyExtractor={(item) => item.slug}
 				renderItem={({ item }) => {
 					return (
