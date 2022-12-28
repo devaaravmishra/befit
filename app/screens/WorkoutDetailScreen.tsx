@@ -25,10 +25,8 @@ function WorkoutDetailScreen({ route }: Navigation) {
 	const [trackerIdx, setTrackerIdx] = useState(-1);
 	const workout = useWorkout(route.params.slug);
 
-	const countDown = useCountDown(
-		trackerIdx,
-		trackerIdx >= 0 ? sequence[trackerIdx]?.duration : -1
-	);
+	const startUpSeq = ["Go...", "1", "2", "3"];
+	const { countDown, isRunning, stop, start } = useCountDown(trackerIdx);
 
 	useEffect(() => {
 		if (!workout || trackerIdx === workout.sequence.length - 1) return;
@@ -37,8 +35,10 @@ function WorkoutDetailScreen({ route }: Navigation) {
 	}, [countDown]);
 
 	const addItemToSequence = (idx: number) => {
-		setSequence([...sequence, workout!.sequence[idx]]);
+		const newSequence = [...sequence, workout!.sequence[idx]];
+		setSequence(newSequence);
 		setTrackerIdx(idx);
+		start(newSequence[idx].duration + startUpSeq.length);
 	};
 
 	const RenderSequence = ({
@@ -81,40 +81,67 @@ function WorkoutDetailScreen({ route }: Navigation) {
 				}
 				toggleTitle={"Check Sequence"}
 			/>
-			{sequence.length === 0 && (
-				<FontAwesome
-					name="play-circle-o"
-					size={100}
-					style={styles.icon}
-					onPress={() => addItemToSequence(0)}
-				/>
-			)}
-			{sequence.length > 0 && countDown >= 0 && (
-				<View style={styles.centerView}>
-					<Text text={`${countDown}`} size={40} />
-				</View>
-			)}
-			<View style={styles.centerView}>
-				<Text
-					text={
-						sequence.length === 0
-							? "Prepare"
-							: hasReachedEnd
-							? "Great Job!"
-							: sequence[trackerIdx]?.name
-					}
-					size={20}
-				/>
-				{hasReachedEnd && (
-					<Button
-						text="Retry"
-						onPress={() => {
-							setTrackerIdx(-1);
-							setSequence([]);
-						}}
-						style={{ width: 100 }}
+			<View style={styles.wrapper}>
+				{sequence.length === 0 ? (
+					<FontAwesome
+						name="play-circle-o"
+						size={100}
+						style={styles.icon}
+						onPress={() => addItemToSequence(0)}
+					/>
+				) : isRunning ? (
+					<FontAwesome
+						name="stop-circle-o"
+						size={100}
+						style={styles.icon}
+						onPress={() => stop()}
+					/>
+				) : (
+					<FontAwesome
+						name="play-circle-o"
+						size={100}
+						style={styles.icon}
+						onPress={() => start(countDown)}
 					/>
 				)}
+				{sequence.length > 0 && countDown >= 0 && (
+					<View style={styles.centerView}>
+						<Text
+							text={`${
+								countDown > sequence[trackerIdx].duration
+									? startUpSeq[
+											countDown -
+												sequence[trackerIdx].duration -
+												1
+									  ]
+									: countDown
+							}`}
+							size={40}
+						/>
+					</View>
+				)}
+				<View style={styles.centerView}>
+					<Text
+						text={
+							sequence.length === 0
+								? "Prepare"
+								: hasReachedEnd
+								? "Great Job, Workout Finished!"
+								: sequence[trackerIdx]?.name
+						}
+						size={20}
+					/>
+					{hasReachedEnd && (
+						<Button
+							text="Retry"
+							onPress={() => {
+								setTrackerIdx(-1);
+								setSequence([]);
+							}}
+							style={{ width: 100, marginTop: 20 }}
+						/>
+					)}
+				</View>
 			</View>
 		</View>
 	);
@@ -144,8 +171,16 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 	},
 	icon: {
-		marginTop: 100,
+		marginTop: 50,
 		alignSelf: "center",
+	},
+	wrapper: {
+		marginTop: 20,
+		borderRadius: 10,
+		borderColor: "rgba(0,0,0,0.1)",
+		backgroundColor: "#fff",
+		borderWidth: 1,
+		paddingBottom: 20,
 	},
 });
 
