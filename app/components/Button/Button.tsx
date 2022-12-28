@@ -17,7 +17,7 @@ function Button({
 			<Text
 				text={text}
 				style={{
-					color: "#fff",
+					color: style?.color ? style.color : "#fff",
 					textAlign: "center",
 					fontSize: 16,
 				}}
