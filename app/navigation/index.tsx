@@ -36,7 +36,10 @@ function RootNavigator() {
 
 function BottomTabNavigator() {
 	return (
-		<BottomTab.Navigator>
+		<BottomTab.Navigator
+			safeAreaInsets={{
+				bottom: 10,
+			}}>
 			<BottomTab.Screen
 				name="Home"
 				component={HomeScreen}
