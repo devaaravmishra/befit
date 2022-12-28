@@ -3,16 +3,18 @@ import { StyleSheet, View, Text, Button } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { RootStackParamList } from "../types";
+import WorkoutForm, { Exercise } from "../components/Form/WorkoutForm";
 
-function PlannerScreen({
-	navigation,
-}: NativeStackScreenProps<RootStackParamList, "Planner">) {
+type Props = NativeStackScreenProps<RootStackParamList, "Planner">;
+
+function PlannerScreen({ navigation }: Props) {
+	const handleOnSubmit = (form: Exercise) => {
+		alert(form.name);
+	};
+
 	return (
 		<View style={styles.container}>
-			<Button
-				title="Go to Home"
-				onPress={() => navigation.navigate("Home")}
-			/>
+			<WorkoutForm onSubmit={handleOnSubmit} />
 		</View>
 	);
 }
@@ -20,9 +22,8 @@ function PlannerScreen({
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "center",
+		padding: 20,
+		backgroundColor: "#eee",
 	},
 });
 
