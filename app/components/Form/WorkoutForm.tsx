@@ -113,7 +113,7 @@ function WorkoutForm({ onSubmit }: WorkoutProps) {
 					)}
 				/>
 				<Button
-					text="CREATE"
+					text="ADD TO SEQUENCE"
 					onPress={handleSubmit((data) => {
 						onSubmit(data);
 					})}
