@@ -7,6 +7,10 @@ import Text from "../Text/Text";
 
 export type Workout = {
 	name: string;
+	slug: string;
+	difficulty: string;
+	duration: number;
+	sequence: any;
 };
 
 type WorkoutProps = {

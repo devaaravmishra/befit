@@ -20,6 +20,12 @@ export const initWorkouts = async (): Promise<boolean> => {
 	return false;
 };
 
+export const storeWorkouts = async (newWorkout: Workout): Promise<boolean> => {
+	const workouts = await getWorkouts();
+	await storeData("workouts", [...workouts, newWorkout]);
+	return true;
+};
+
 export const clearWorkouts = async () => {
 	await removeData("workouts");
 };
