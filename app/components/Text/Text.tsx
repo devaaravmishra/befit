@@ -1,4 +1,4 @@
-import { StyleSheet, Text as ReactNativeText, View } from "react-native";
+import { StyleSheet, Text as ReactNativeText } from "react-native";
 import { TextProps } from "../../types";
 
 const Text = ({ text, size, type, style }: TextProps) => (
