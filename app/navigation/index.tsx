@@ -1,7 +1,11 @@
-import { Text } from "react-native";
+import { ColorSchemeName } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+	NavigationContainer,
+	DarkTheme,
+	DefaultTheme,
+} from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
 
 import HomeScreen from "../screens/HomeScreen";
@@ -20,6 +24,7 @@ function RootNavigator() {
 				component={BottomTabNavigator}
 				options={{
 					headerShown: false,
+					headerTitleAlign: "center",
 				}}
 			/>
 			<Stack.Screen
@@ -63,6 +68,7 @@ function BottomTabNavigator() {
 							color={color}
 						/>
 					),
+					unmountOnBlur: true,
 					tabBarLabelStyle: {
 						paddingBottom: 2,
 					},
@@ -72,9 +78,14 @@ function BottomTabNavigator() {
 	);
 }
 
-export default function AppNavigator() {
+export default function AppNavigator({
+	colorScheme,
+}: {
+	colorScheme: ColorSchemeName;
+}) {
 	return (
-		<NavigationContainer>
+		<NavigationContainer
+			theme={colorScheme === "light" ? DefaultTheme : DarkTheme}>
 			<RootNavigator />
 		</NavigationContainer>
 	);
