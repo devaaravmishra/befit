@@ -23,6 +23,7 @@
 				"foregroundImage": "./app/assets/icon.png",
 				"backgroundColor": "#EEE"
 			},
+			"softwareKeyboardLayoutMode": "pan",
 			"package": "com.aaaravv.befit"
 		},
 		"web": {
