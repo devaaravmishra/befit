@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Workout } from "../types";
+import { Workout } from "../../types";
 
-import Text from "../components/Text/Text";
-import secToMin from "../utils/time";
+import Text from "../Text/Text";
+import secToMin from "../../utils/time";
 
 const RenderWorkouts = ({ item }: { item: Workout }) => (
 	<View style={styles.container}>

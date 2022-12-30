@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-import { SequenceType } from "../types/";
+import { SequenceType } from "../../types";
 
 export default function WorkoutItem({
 	item,
