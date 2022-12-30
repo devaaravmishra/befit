@@ -53,11 +53,18 @@ function WorkoutDetailScreen({ route }: Navigation) {
 		return (
 			<View style={styles.content} key={item.slug}>
 				<Text
-					text={`${item.name} | ${item.type} | ${secToMin(
+					text={`${item.name.toUpperCase()} | ${item.type.toUpperCase()} | ${secToMin(
 						item.duration
 					)}`}
+					style={{ marginBottom: 10 }}
 				/>
-				{idx == len - 1 ? null : <FontAwesome name="arrow-down" />}
+				{idx == len - 1 ? null : (
+					<FontAwesome
+						name="arrow-down"
+						size={30}
+						style={{ marginBottom: 15 }}
+					/>
+				)}
 			</View>
 		);
 	};

@@ -15,7 +15,7 @@ function HomeScreen({ navigation }: Props) {
 	return (
 		<View style={styles.container}>
 			<Text
-				text={"New Workouts"}
+				text={"Your Workouts"}
 				size={20}
 				type="lato-bold"
 				style={{

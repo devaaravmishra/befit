@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList, Image } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import slugify from "slugify";
 
 import { RootStackParamList, WorkoutType, SequenceType } from "../types";
 import WorkoutForm, { Exercise } from "../components/Form/WorkoutForm";
-import Text from "../components/Text/Text";
-import Button from "../components/Button/Button";
 import WorkoutItem from "../components/Workout/WorkoutItem";
 import { FontAwesome } from "@expo/vector-icons";
 import Modal from "../components/Modal/Modal";
 import WorkoutsForm from "../components/Form/WorkoutsForm";
 import { Workout } from "../types";
 import { storeWorkouts } from "../store/workouts";
+import Text from "../components/Text/Text";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Planner">;
 
@@ -66,29 +65,43 @@ function PlannerScreen({ navigation }: Props) {
 
 	return (
 		<View style={styles.container}>
-			<FlatList
-				style={{ flex: 1 }}
-				data={seqItems}
-				keyExtractor={(item) => item.slug}
-				renderItem={({ item, index }) => (
-					<WorkoutItem item={item}>
-						<FontAwesome
-							name="trash"
-							size={24}
-							color="black"
-							style={{
-								textAlign: "right",
-								width: "30%",
-							}}
-							onPress={() => {
-								const items = [...seqItems];
-								items.splice(index, 1);
-								setSeqItems(items);
-							}}
-						/>
-					</WorkoutItem>
-				)}
-			/>
+			{seqItems?.length > 0 ? (
+				<FlatList
+					style={{ flex: 1 }}
+					data={seqItems}
+					keyExtractor={(item) => item.slug}
+					renderItem={({ item, index }) => (
+						<WorkoutItem item={item}>
+							<FontAwesome
+								name="trash"
+								size={24}
+								color="black"
+								style={{
+									marginLeft: 15,
+									width: "30%",
+								}}
+								onPress={() => {
+									const items = [...seqItems];
+									items.splice(index, 1);
+									setSeqItems(items);
+								}}
+							/>
+						</WorkoutItem>
+					)}
+				/>
+			) : (
+				<View style={styles.imageContainer}>
+					<Image
+						style={{
+							height: 200,
+							width: 300,
+						}}
+						source={require("../assets/loader.gif")}
+					/>
+					<Text text="Try adding some exercises to your workout!" />
+				</View>
+			)}
+
 			<WorkoutForm onSubmit={handleOnSubmit} />
 			<View>
 				<Modal
@@ -112,6 +125,11 @@ const styles = StyleSheet.create({
 		flex: 1,
 		padding: 20,
 		backgroundColor: "#eee",
+	},
+	imageContainer: {
+		marginBottom: 60,
+		justifyContent: "center",
+		alignItems: "center",
 	},
 });
 

@@ -13,9 +13,9 @@ export default function WorkoutItem({
 	return (
 		<View style={styles.container}>
 			<Text style={styles.name}>
-				{item.name}
-				{item.reps ? `- ${item.reps}` : ""} - {item.duration} sec |{" "}
-				{item.type}
+				{item.name.toUpperCase()}
+				{item.reps ? ` - ${item.reps} Reps` : ""} - {item.duration} secs
+				| {" " + item.type.toUpperCase()}
 			</Text>
 			{children}
 		</View>

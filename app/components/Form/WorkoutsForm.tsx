@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, View, ScrollView } from "react-native";
 
 import Button from "../Button/Button";
 import Text from "../Text/Text";
@@ -21,43 +21,46 @@ function WorkoutsForm({ onSubmit }: WorkoutProps) {
 	const { control, handleSubmit } = useForm<Workout>();
 
 	return (
-		<View style={styles.container}>
-			<Text
-				text="Create a Workout"
-				size={20}
-				type={"lato-bold"}
-				style={{
-					marginBottom: 10,
-					textAlign: "center",
-				}}
-			/>
-			<Controller
-				control={control}
-				rules={{
-					required: true,
-				}}
-				name="name"
-				render={({ field: { onChange, value } }) => (
-					<TextInput
-						onChangeText={onChange}
-						value={value}
-						style={styles.input}
-						placeholder="Workout name"
-					/>
-				)}
-			/>
-			<Button
-				text="CONFIRM"
-				onPress={handleSubmit((data) => {
-					onSubmit(data as Workout);
-				})}
-			/>
-		</View>
+		<ScrollView>
+			<View style={styles.container}>
+				<Text
+					text="Create a Workout"
+					size={20}
+					type={"lato-bold"}
+					style={{
+						marginBottom: 10,
+						textAlign: "center",
+					}}
+				/>
+				<Controller
+					control={control}
+					rules={{
+						required: true,
+					}}
+					name="name"
+					render={({ field: { onChange, value } }) => (
+						<TextInput
+							onChangeText={onChange}
+							value={value}
+							style={styles.input}
+							placeholder="Workout name"
+						/>
+					)}
+				/>
+				<Button
+					text="CONFIRM"
+					onPress={handleSubmit((data) => {
+						onSubmit(data as Workout);
+					})}
+				/>
+			</View>
+		</ScrollView>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
+		flex: 1,
 		backgroundColor: "#fff",
 		borderRadius: 10,
 		padding: 10,

@@ -22,8 +22,8 @@ const Modal = ({
 				style={styles.container}
 				visible={isModalVisible as boolean}
 				animationType="slide">
-				<View style={styles.centerView}>{data}</View>
-				<View style={styles.centerView}>
+				<View style={[styles.centerView]}>{data}</View>
+				<View style={[styles.centerViewText]}>
 					<Button
 						text="Close"
 						onPress={() => setIsModalVisible(false)}
@@ -45,6 +45,11 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 	},
 	centerView: {
+		marginTop: 100,
+		justifyContent: "center",
+		alignItems: "center",
+	},
+	centerViewText: {
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
