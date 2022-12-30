@@ -7,7 +7,7 @@ import { RootStackParamList, WorkoutType, SequenceType } from "../types";
 import WorkoutForm, { Exercise } from "../components/Form/WorkoutForm";
 import Text from "../components/Text/Text";
 import Button from "../components/Button/Button";
-import WorkoutItem from "../components/WorkoutItem";
+import WorkoutItem from "../components/Workout/WorkoutItem";
 import { FontAwesome } from "@expo/vector-icons";
 import Modal from "../components/Modal/Modal";
 import WorkoutsForm from "../components/Form/WorkoutsForm";

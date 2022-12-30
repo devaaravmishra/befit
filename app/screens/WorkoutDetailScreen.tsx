@@ -13,7 +13,7 @@ import useWorkout from "../hooks/useWorkoutBySlug";
 import Modal from "../components/Modal/Modal";
 import secToMin from "../utils/time";
 import { FontAwesome } from "@expo/vector-icons";
-import RenderWorkouts from "../components/RenderWorkout";
+import RenderWorkouts from "../components/Workout/RenderWorkout";
 import useCountDown from "../hooks/useCountDown";
 import Button from "../components/Button/Button";
 

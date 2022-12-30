@@ -3,8 +3,8 @@ import { StyleSheet, View, FlatList, Pressable } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import Text from "../components/Text/Text";
-import RenderWorkouts from "../components/RenderWorkout";
-import { RootStackParamList, Workout } from "../types";
+import RenderWorkouts from "../components/Workout/RenderWorkout";
+import { RootStackParamList } from "../types";
 import useWorkouts from "../hooks/useWorkouts";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
