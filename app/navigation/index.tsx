@@ -44,6 +44,9 @@ function BottomTabNavigator() {
 		<BottomTab.Navigator
 			safeAreaInsets={{
 				bottom: 10,
+			}}
+			screenOptions={{
+				tabBarActiveTintColor: "#000",
 			}}>
 			<BottomTab.Screen
 				name="Home"
@@ -52,6 +55,7 @@ function BottomTabNavigator() {
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesome name="home" size={size} color={color} />
 					),
+					headerTitleAlign: "center",
 					tabBarLabelStyle: {
 						paddingBottom: 2,
 					},
@@ -62,12 +66,9 @@ function BottomTabNavigator() {
 				component={PlannerScreen}
 				options={{
 					tabBarIcon: ({ color, size }) => (
-						<FontAwesome
-							name="calendar"
-							size={size}
-							color={color}
-						/>
+						<FontAwesome name="edit" size={size} color={color} />
 					),
+					headerTitleAlign: "center",
 					unmountOnBlur: true,
 					tabBarLabelStyle: {
 						paddingBottom: 2,
