@@ -58,9 +58,9 @@ Run server with expo client:
 
 ## Screenshots
 
-![App Screenshot2](./assets/ss1.png)
-![App Screenshot3](./assets/ss2.png)
-![App Screenshot4](./assets/ss3.png)
+![App Screenshot1](./assets/ss1.png)
+![App Screenshot2](./assets/ss2.png)
+![App Screenshot3](./assets/ss3.png)
 
 ## License
 
