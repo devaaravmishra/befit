@@ -1,8 +1,8 @@
-<div align="center">
-<img src="./app/assets/icon.png" height="500" style="margin-top: -100px" alt="logo" >
-<div>
-<img align="center"src="./app/assets/logo.png" style="margin-top: -200px" alt="logo" width="200" height="60">
-</div>
+<div align="center" style="margin-top: -130px">
+<img src="./app/assets/icon.png" style="margin-bottom: -110px" height="500" alt="logo" >
+<img align="center"src="./app/assets/logo.png" alt="logo"/>
+
+</br>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -55,6 +55,7 @@ Run server with expo client:
 
 ## Screenshots
 
+![App Screenshot2](./assets/ss.png)
 ![App Screenshot2](./assets/ss1.png)
 ![App Screenshot3](./assets/ss2.png)
 ![App Screenshot4](./assets/ss3.png)
