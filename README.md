@@ -1,14 +1,17 @@
+<div align="center" style="margin-top: -100px;">
+<img src="./assets/logo.svg" alt="logo" style="margin-bottom: -100px;">
+
 <div align="center">
-<img src="./app/assets/icon.png" height="500" style="margin-top: -100px" alt="logo" >
-<div>
-<img align="center"src="./app/assets/logo.png" style="margin-top: -200px" alt="logo" width="200" height="60">
+<img src="./app/assets/logo.png" alt="logo">
 </div>
+
+</br>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 #### Welcome to <b>BeFit!</b>
 
-#### BeFit is a mobile workout app built using React Native &amp; Expo CLI
+<b>BeFit!</b> is a mobile workout app built using React Native &amp; Expo CLI
 
 </div>
 
